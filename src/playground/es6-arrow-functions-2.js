@@ -26,7 +26,6 @@ const multiplier = {
     numbers: [2, 4, 6, 8],
     multiplyBy: 2,
     multiply() {
-        // const result = this.numbers.map((number) => number + ' * ' + this.multiplyBy + ' = ' + number * this.multiplyBy);
         return this.numbers.map((number) => number + ' * ' + this.multiplyBy + ' = ' + number * this.multiplyBy);
     }
 }

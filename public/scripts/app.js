@@ -1,42 +1,83 @@
 'use strict';
 
-// argument objects: no longer bound with arrow functions
-var add = function add(a, b) {
+console.log('App.js is running');
 
-    return a + b;
+var app = {
+    title: ' Indecision app',
+    subtitle: ' An app for indecision. Or not',
+    options: ['First option', 'Second option']
 };
 
-console.log(add(55, 1));
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        app.title
+    ),
+    app.subtitle && app.subtitle.length > 0 && React.createElement(
+        'h3',
+        null,
+        ' ',
+        app.subtitle,
+        '  '
+    ),
+    React.createElement(
+        'p',
+        null,
+        '  ',
+        app.options.length > 0 ? 'Here are your options:' : 'You have no options',
+        ' '
+    ),
+    React.createElement(
+        'ol',
+        null,
+        React.createElement(
+            'li',
+            null,
+            ' '
+        )
+    )
+);
 
-//this keyword: no longer bound
-
-var user = {
-    name: 'Maca',
-    age: 23,
-    cities: ['Córdoba', 'Buenos Aires'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-    }
+var count = 0;
+var addOne = function addOne() {
+    console.log('addOne');
 };
-console.log(user.printPlacesLived());
-
-// Challenge Area
-
-var multiplier = {
-    numbers: [2, 4, 6, 8],
-    multiplyBy: 2,
-    multiply: function multiply() {
-        var _this2 = this;
-
-        // const result = this.numbers.map((number) => number + ' * ' + this.multiplyBy + ' = ' + number * this.multiplyBy);
-        return this.numbers.map(function (number) {
-            return number + ' * ' + _this2.multiplyBy + ' = ' + number * _this2.multiplyBy;
-        });
-    }
+var setupReset = function setupReset() {
+    console.log('setupReset');
+};
+var minusOne = function minusOne() {
+    console.log('minusOne');
 };
 
-console.log(multiplier.multiply());
+var templateTwo = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        ' Count: ',
+        count,
+        ' '
+    ),
+    React.createElement(
+        'button',
+        { onClick: minusOne },
+        ' -1 '
+    ),
+    React.createElement(
+        'button',
+        { onClick: setupReset },
+        ' Reset '
+    ),
+    React.createElement(
+        'button',
+        { onClick: addOne },
+        ' +1 '
+    )
+);
+var appRoot = document.getElementById('app');
+
+ReactDOM.render(templateTwo, appRoot);
