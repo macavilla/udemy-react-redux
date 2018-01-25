@@ -8,7 +8,7 @@ const app = {
 const toggleVisibility = () => {
     app.detailsAreShowed = !app.detailsAreShowed;
     render();
-    // My (very inefficient) solution:
+    // My first (very inefficient) solution:
     //  if (!app.detailsAreShowed) {
     //     app.detailsAreShowed = 'true';
     //     render();
