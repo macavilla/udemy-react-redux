@@ -1,42 +1,72 @@
-const appRoot = document.getElementById('app');
-const app = {
-    title: 'Visibility toggle',
-    details: 'Here are some details...',
-    detailsAreShowed: ''
-};
 
-const toggleVisibility = () => {
-    app.detailsAreShowed = !app.detailsAreShowed;
-    render();
-    // My first (very inefficient) solution:
-    //  if (!app.detailsAreShowed) {
-    //     app.detailsAreShowed = 'true';
-    //     render();
-    // } else {
-    //     app.detailsAreShowed = '';
-    //     render();
-    // }
-};
+class VisibilityToggle extends React.Component{
+    constructor(props){
+        super(props);
 
-const showDetails = () => {
-    if (app.detailsAreShowed) {
-        return app.details;
-    } else {
-        return ' ';
+        this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
+
+        this.state={
+            visibility: ''
+        }
+
     }
-render();
-};
 
-const render = () => {
-    const template = (
-        <div>
-            <h1> {app.title} </h1>
-            <button onClick={toggleVisibility}> {app.detailsAreShowed ? 'Hide' : 'Show'} details </button>
-            <p> {showDetails()} </p>
-        </div>
-    );
+    handleToggleVisibility(){
+        this.setState((prevState) => {
+            return {
+                visibility: !this.prevState
+            }
+        })
 
-    ReactDOM.render(template, appRoot);
-};
+    }
+    
+    render(){
+        return(
+            <div>
+                <h1>Toggle visibility</h1>
+                <button onClick={this.handleToggleVisibility}> {} details </button>
+                <p></p>
+            </div>
 
-render();
+        );
+    }
+}
+
+ReactDOM.render(<VisibilityToggle />, document.getElementById('app'));
+
+
+// const appRoot = document.getElementById('app');
+// const app = {
+//     title: 'Visibility toggle',
+//     details: 'Here are some details...',
+//     detailsAreShowed: ''
+// };
+
+// const toggleVisibility = () => {
+//     app.detailsAreShowed = !app.detailsAreShowed;
+//     render();
+
+// };
+
+// const showDetails = () => {
+//     if (app.detailsAreShowed) {
+//         return app.details;
+//     } else {
+//         return ' ';
+//     }
+// render();
+// };
+
+// const render = () => {
+//     const template = (
+//         <div>
+//             <h1> {app.title} </h1>
+//             <button onClick={toggleVisibility}> {app.detailsAreShowed ? 'Hide' : 'Show'} details </button>
+//             <p> {showDetails()} </p>
+//         </div>
+//     );
+
+//     ReactDOM.render(template, appRoot);
+// };
+
+// render();
