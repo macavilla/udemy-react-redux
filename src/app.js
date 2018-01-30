@@ -1,3 +1,4 @@
+
 class IndecisionApp extends React.Component {
     render() {
         const title = `Indecision`;
@@ -28,10 +29,15 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+    handlePick() {
+        alert('handlePick');
+    }
+
+
     render() {
         return (
             <div>
-                <button>What should I do?</button>
+                <button onClick={this.handlePick}>What should I do?</button>
             </div>
         );
     }
@@ -40,13 +46,24 @@ class Action extends React.Component {
 
 
 class Options extends React.Component {
+    constructor(props) {
+        super(props);
+        //whenever we call the handler, we assure that this value is binded correctly
+        this.handleRemoveAll = this.handleRemoveAll.bind(this) ;
+    }
+
+    handleRemoveAll() {
+        console.log(this.props.options);
+        //alert('handleRemoveAll');
+    }
+
     render() {
         return (
             <div>
-                {this.props.options.map((option) => {
-                    <Option key={option} optionText={option} />
+                <button onClick={this.handleRemoveAll}> Remove all</button>
+                {
+                    this.props.options.map((option) => <Option key={option} optionText={option} />)
                 }
-                )}
             </div>
         );
     }
@@ -58,16 +75,31 @@ class Option extends React.Component {
             <div>
                 {this.props.optionText}
             </div>
-
         );
     }
 }
 
 class AddOption extends React.Component {
+    handleAddOption(e) {
+        e.preventDefault();
+        const option = e.target.elements.option.value.trim();
+
+        if (option) {
+            alert(`handleAddOption: ${option}`);
+
+        }
+
+        e.target.elements.option.value = '';
+
+    }
+
     render() {
         return (
             <div>
-                AddOption here
+                <form action="" onSubmit={this.handleAddOption}>
+                    <input type="text" name="option" placeholder="Add an option" />
+                    <button>Add option</button>
+                </form>
             </div>
         );
     }
