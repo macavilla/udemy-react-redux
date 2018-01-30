@@ -6,15 +6,17 @@ class VisibilityToggle extends React.Component{
         this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
 
         this.state={
-            visibility: ''
+            visibility: '',
+            details: 'Here are some details'
         }
 
     }
 
     handleToggleVisibility(){
         this.setState((prevState) => {
+            
             return {
-                visibility: !this.prevState
+                visibility: !prevState.visibility
             }
         })
 
@@ -24,8 +26,8 @@ class VisibilityToggle extends React.Component{
         return(
             <div>
                 <h1>Toggle visibility</h1>
-                <button onClick={this.handleToggleVisibility}> {} details </button>
-                <p></p>
+                <button onClick={this.handleToggleVisibility}> {this.state.visibility ? 'Hide' : 'Show' } details </button>
+                <p>{this.state.visibility ? this.state.details : ' '}</p>
             </div>
 
         );
@@ -34,39 +36,3 @@ class VisibilityToggle extends React.Component{
 
 ReactDOM.render(<VisibilityToggle />, document.getElementById('app'));
 
-
-// const appRoot = document.getElementById('app');
-// const app = {
-//     title: 'Visibility toggle',
-//     details: 'Here are some details...',
-//     detailsAreShowed: ''
-// };
-
-// const toggleVisibility = () => {
-//     app.detailsAreShowed = !app.detailsAreShowed;
-//     render();
-
-// };
-
-// const showDetails = () => {
-//     if (app.detailsAreShowed) {
-//         return app.details;
-//     } else {
-//         return ' ';
-//     }
-// render();
-// };
-
-// const render = () => {
-//     const template = (
-//         <div>
-//             <h1> {app.title} </h1>
-//             <button onClick={toggleVisibility}> {app.detailsAreShowed ? 'Hide' : 'Show'} details </button>
-//             <p> {showDetails()} </p>
-//         </div>
-//     );
-
-//     ReactDOM.render(template, appRoot);
-// };
-
-// render();
